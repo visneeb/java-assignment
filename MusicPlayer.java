@@ -2,7 +2,7 @@ interface Playable {
     void play();
 }
 
-abstract class MusicDevice {
+abstract class MusicDevice implements Playable {
     private String brand;
 
     public void setBrand(String brand) {
@@ -20,7 +20,7 @@ abstract class MusicDevice {
     abstract void connect();
 }
 
-class CDPlayer extends MusicDevice implements Playable {
+class CDPlayer extends MusicDevice {
     public CDPlayer(String brand) {
         setBrand(brand);
     }
@@ -32,9 +32,10 @@ class CDPlayer extends MusicDevice implements Playable {
     public void play() {
         System.out.println("Music is playing from CD");
     }
+
 }
 
-class Smartphone extends MusicDevice implements Playable {
+class Smartphone extends MusicDevice {
     public Smartphone(String brand) {
         setBrand(brand);
     }
@@ -55,12 +56,12 @@ public class MusicPlayer {
 
         device1.connect();
         device1.info();
-        ((Playable) device1).play();
+        device1.play();
 
         System.out.println("---");
 
         device2.connect();
         device2.info();
-        ((Playable) device2).play();
+        device2.play();
     }
 }
